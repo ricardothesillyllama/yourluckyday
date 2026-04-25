@@ -116,7 +116,7 @@ function genLotteryNums(game, seed) {
   return { main, bonus };
 }
 
-async function callClaude(star, zodiac, lang) {
+async function callGroq(star, zodiac, lang) {
   const today = new Date().toLocaleDateString(lang === "zh" ? "zh-CN" : "en-US", { year: "numeric", month: "long", day: "numeric" });
   const who = lang === "zh"
     ? (star && zodiac ? `${star.zh}（属${zodiac.zh}）` : star ? star.zh : zodiac ? `属${zodiac.zh}` : "今日来访者")
@@ -124,13 +124,18 @@ async function callClaude(star, zodiac, lang) {
   const p = lang === "zh"
     ? `你是运势大师。为${who}生成今日（${today}）运势。涵盖整体✨、爱情💕、事业💼、财运💰，每项1-2句加emoji，约140字，直接输出。`
     : `You're a mystical fortune teller. Generate today's (${today}) horoscope for ${who}. Cover overall✨, love💕, career💼, wealth💰 — 1-2 sentences each with emojis, ~90 words. Output directly.`;
+  
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("/api/fortune", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{ role: "user", content: p }] }),
+      body: JSON.stringify({ 
+        model: "llama-3.3-70b-versatile", 
+        max_tokens: 1000, 
+        messages: [{ role: "user", content: p }] 
+      }),
     });
     const data = await res.json();
-    return data.content?.[0]?.text || (lang === "zh" ? "星象汇聚，好运降临…" : "Great energy surrounds you today!");
+    return data.choices?.[0]?.message?.content || (lang === "zh" ? "星象汇聚，好运降临…" : "Great energy surrounds you today!");
   } catch {
     return lang === "zh" ? "今日星象能量汇聚，好运不断向你奔涌而来！" : "Great energy surrounds you today. Fortune is yours!";
   }
@@ -185,7 +190,7 @@ function FortuneTab({ lang, T, noAds }) {
     const si = star   ? STAR_SIGNS.findIndex(s => s.en === star.en)     : null;
     const zi = zodiac ? CHINESE_ZODIAC.findIndex(z => z.en === zodiac.en) : null;
     setLucky(genLucky(si, zi)); setDone(true); setLoading(true);
-    try   { setHoroscope(await callClaude(star, zodiac, lang)); }
+    try   { setHoroscope(await callGroq(star, zodiac, lang)); } // <--- Update this line
     catch { setHoroscope(T("星象汇聚，好运降临…", "Great energy surrounds you. Fortune is yours!")); }
     finally { setLoading(false); }
   };
