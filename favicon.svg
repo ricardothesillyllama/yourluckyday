@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#1e0a0a"/>
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#FFD700" stroke-width="12" opacity="0.6"/>
+  <!-- Inner glow circle -->
+  <circle cx="256" cy="256" r="180" fill="#3B0000" opacity="0.8"/>
+  <!-- 大 character -->
+  <text x="256" y="310" font-family="serif" font-size="200" font-weight="900"
+        text-anchor="middle" fill="#FFD700" opacity="0.95">大</text>
+  <!-- Star decorations -->
+  <text x="100" y="130" font-size="48" text-anchor="middle" fill="#FFD700" opacity="0.7">✦</text>
+  <text x="412" y="130" font-size="48" text-anchor="middle" fill="#FFD700" opacity="0.7">✦</text>
+  <text x="100" y="420" font-size="32" text-anchor="middle" fill="#FFD700" opacity="0.4">✦</text>
+  <text x="412" y="420" font-size="32" text-anchor="middle" fill="#FFD700" opacity="0.4">✦</text>
+</svg>

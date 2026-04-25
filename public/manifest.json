@@ -1,0 +1,52 @@
+{
+  "name": "今日大吉 · Your Lucky Day",
+  "short_name": "今日大吉",
+  "description": "Daily lucky numbers, colors, directions, horoscope & lottery picks · 每日幸运数字颜色方位运程",
+  "theme_color": "#1e0a0a",
+  "background_color": "#120608",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/?source=pwa",
+  "lang": "zh-CN",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Today's Fortune Screen"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "今日运势",
+      "short_name": "运势",
+      "description": "Check today's fortune",
+      "url": "/?tab=fortune",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "幸运彩票",
+      "short_name": "彩票",
+      "description": "Get lucky lottery numbers",
+      "url": "/?tab=lottery",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
